@@ -2410,14 +2410,20 @@ This example code is provided by NeoWize, 2017.
         var clickX = 0;
         var scrolledTotalDistance = 0;
 
+        // get mouse / touch position X from event, regardless if mobile or desktop.
+        function getPosFromEvent(e)
+        {
+            return e.pageX || e.originalEvent.touches[0].pageX;
+        }
+
         // update scroll position
         var updateScrollPos = function(e, el) {
 
             // do the scrolling
             var $el = $(el);
-            var scrollDistance = (clickX - e.pageX);
+            var scrollDistance = (clickX - getPosFromEvent(e));
             $el.scrollLeft($el.scrollLeft() + scrollDistance);
-            clickX = e.pageX;
+            clickX = getPosFromEvent(e);
 
             // how much we total scrolled the widget. this is used to disable links while dragging.
             scrolledTotalDistance += Math.abs(scrollDistance);
@@ -2437,20 +2443,34 @@ This example code is provided by NeoWize, 2017.
             setTimeout(function() {wasDragged = false;}, 50);
         }
 
-        // register events for the dragging
-        // while mouse move we drag the widget:
+        // register events for the dragging:
         widget.on({
+          // when mouse move and we are clicking on widget, dragging
           'mousemove': function(e) {
             clicked && updateScrollPos(e, this);
           },
           // when mouse is pressed we start dragging
           'mousedown': function(e) {
             clicked = true;
-            clickX = e.pageX;
+            clickX = getPosFromEvent(e);
           },
           // when mouse is released we stop dragging
           'mouseup': finishDragging,
           'mouseleave': finishDragging,
+        });
+
+        // register events for the dragging - for mobile:
+        widget.on({
+          'touchmove': function(e) {
+            clicked && updateScrollPos(e, this);
+          },
+          // when mouse is pressed we start dragging
+          'touchstart': function(e) {
+            clicked = true;
+            clickX = getPosFromEvent(e);
+          },
+          // when touch is released we stop dragging
+          'touchend': finishDragging,
         });
     }
 
