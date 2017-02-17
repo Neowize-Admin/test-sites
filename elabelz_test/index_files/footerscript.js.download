@@ -1,0 +1,55 @@
+$j(document).ready(function() {
+	$j(".config_product_attr").each( function(){
+
+		$j(document).on("click", ".config_product_attr .quantity_change_btn", function(){
+			var attribval =  $j(this).parent().find("select").attr("data-unique-identifier");
+			var curruntspan = $j(this).parent().find("span[id='"+attribval+"']");
+			//alert(attribval);
+
+			var checknext =  $j(this).parent().next();
+			//alert(checknext.html);
+
+			if(checknext.length != null) {
+				//alert("yes");
+				var nextattrib =  $j(this).parent().next()
+				.find("select").attr("data-unique-identifier");
+
+				var nextspan = $j(this).parent().next()
+				.find("span[id='"+nextattrib+"']");
+				nextspan.hide();
+			}
+			curruntspan.hide();
+			
+		});
+
+	});
+
+	$j(".cart_pro_qtn").each( function(){
+
+		$j(document).on("click", ".cart_pro_qtn .quantity_change_btn", function (){
+			var lablehtml = $j(this).parent().find(".qty_label").html();
+			var finalstring = lablehtml.replace(/\d+/g, '');
+			$j(this).parent().find(".qty_label").html(finalstring);
+			//alert(finalstring);
+		});
+
+	}); 
+});
+
+$j(document).ready(function () {
+	$j('.newsletter_radio label').click(function () {
+		//alert($j(this).attr('for'));
+		var checkradio = $j(this).attr('for');
+
+		if(checkradio == "radio01") {
+			$j('.newsletter_radio input#radio01').trigger("click");
+		}
+
+		if(checkradio == "radio02") {
+			$j('.newsletter_radio input#radio02').trigger("click");
+		}
+
+		$j('.newsletter_female_signup_submit').trigger("click");
+	});
+
+});

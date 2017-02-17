@@ -1,0 +1,241 @@
+/*
+This code is an example of a NeoWize widget that shows related products.
+You may change or modify it any way you like to fit your style and needs.
+
+This example code is provided by NeoWize, 2017.
+**/
+
+/* the main container div that the widget reside in. */
+.neowize-widget-container {
+
+    /* default text styling and font */
+    font-family: Verdana, Geneva, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.0em;
+    overflow-x: hidden;
+    position: relative;
+
+    /* padding */
+    padding: 10px 10px 10px 10px;
+
+    /* disable text selection so we can use drag as scrolling */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* widget outlines */
+    border: solid 1px #ccc;
+}
+
+/* the widget div that actually contain the products. */
+.neowize-widget-container-products {
+
+    /* set widget size (full width with constant height) */
+    display: block;
+    width: 100%;
+
+    /* make overflow hidden. note: on X axis instead of scrollbar we make dragging-based scrolling. */
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    /* default text styling and font */
+    font-family: Verdana, Geneva, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    white-space: nowrap;
+    font-size: 1.0em;
+
+    /* disable text selection so we can use drag as scrolling */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* widget title styling (the "You may also like..." text). */
+.neowize-widget-title {
+    /*font-size: 1.3em;
+    margin-bottom: 0.2em;*/
+    font-size: 12px;
+    margin: 14px 0;
+    font-weight: bold;
+}
+
+/* the div that contains a single product in the widget. */
+.neowize-product-container {
+
+    /* set the size of every product in the widget. note: width is overridden by code based on number of products returned  */
+    display: inline-table;
+    width: 25%;
+    max-width: 350px;
+    min-width: 205px;
+
+    /* padding between products */
+    padding-right: 2em;
+    padding-left: 2em;
+
+    /* to make products height constant regardless of padding and texts */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+}
+
+/* product link, that wrap all the product text and picture. this style affect all the widget products text. */
+.neowize-product-link {
+
+    /* remove underline and other decorations and set clipping text overflow */
+    text-decoration: none;
+    text-overflow: clip;
+    white-space: normal;
+
+    /* default texts color */
+    color: #111111;
+}
+
+/* product preview image in NeoWize widget. */
+.neowize-product-pic {
+
+    /* product preview image size */
+    display: block;
+    height: 120px;
+    width: auto;
+    max-width: 250px;
+    margin-bottom: 10px;
+
+    /* center product image */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* product title in NeoWize widget. */
+.neowize-product-title {
+
+    /* general styling */
+    font-size: 1.0em;
+    font-weight: normal;
+    overflow: hidden;
+    display: block !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* if your site have very long item names and you want to limit them to max of two lines (will add ... when cut),
+ uncomment the section below. this will limit item name length. */
+/*
+.neowize-product-title {
+
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.2em;
+    max-height: 2.4em;
+    min-height: 2.4em;
+}
+*/
+
+/* effect when hovering over products div - highlight product name */
+.neowize-product-container:hover a {
+    color: #336699;
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+.neowize-product-container a {
+
+    /* for hover transition */
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+
+/* effect when hovering over products image - make it slightly larger */
+.neowize-product-container:hover img {
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+.neowize-product-container img {
+
+    /* for hover transition */
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+
+/* product price in NeoWize widget. */
+.neowize-product-price {
+
+    /* general styling */
+    color: #565656;
+    font-size: 1.0em;
+    text-align: center;
+}
+
+/* create css-based arrow icon (pointing right by default, for left arrow use "transform: scale(-1, 1)" css property). */
+i.neowize-arrow {
+    display: inline-block;
+    font-style: normal;
+    width: 15px;
+    height: 15px;
+    border-right: 0.2em solid rgba(255, 255, 255, 0.75);
+    border-top: 0.2em solid rgba(255, 255, 255, 0.75);
+    transform: rotate(45deg);
+    font-size: 40px;
+    position: relative;
+    text-align: center;
+    top: 10px;
+    left: 5px;
+    font-family: sans-serif !important;
+    z-index: 1000;
+}
+
+/* css-based arrow background (half-transparent black circle behind the arrow). */
+div.neowize-arrow-container
+{
+    top: -0.2em;
+    position: relative;
+    z-index:1000;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.48);
+    width: 40px;
+    height: 40px;
+    padding: 0px 0px 0px 0px;
+    margin-top: -20px;
+    cursor: pointer;
+}
+
+
+ /*neowise widget css start */
+
+ #neowize-widget-container { float: left; width:  100%; border-top: 1px solid #ddd!important; border: none; }
+ #neowize-widget-arrow-right { right:  -14px !important; }
+ #neowize-widget-arrow-right .neowize-arrow-container {  background: url("images/neowise-right.png") no-repeat scroll 12px 2px}
+ #neowize-widget-arrow-right .neowize-arrow-container i {  display: none; }
+ #neowize-widget-arrow-left { -webkit-transform: scale(1, 1) !important;
+    -moz-transform: scale(1, 1) !important;
+     -ms-transform: scale(1, 1) !important;
+      -o-transform: scale(1, 1) !important;
+         transform: scale(1, 1) !important; }
+#neowize-widget-arrow-left .neowize-arrow-container { background: url(images/neowise-left.png) no-repeat 8px 5px; }
+#neowize-widget-arrow-left .neowize-arrow-container { background: url(images/neowise-left.png) no-repeat 0px 4px; }
+#neowize-widget-arrow-left .neowize-arrow-container i { display: none; }
+#neowize-widget-container .neowize-product-title { font-size: 12px;  font-weight: normal; }
+#neowize-widget-container .neowize-product-title { font-size: 15px;  font-weight: bold; }
+#neowize-widget-container p.neowize-product-price {color: black; line-height: 30px; font-size: 12px;}
+ /*neowise widget css end */
