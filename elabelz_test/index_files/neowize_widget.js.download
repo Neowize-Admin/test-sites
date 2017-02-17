@@ -185,8 +185,8 @@ This example code is provided by NeoWize, 2017.
                 // special case - in firefox and ie there's a known bug the scrollbar is reversed
                 Neowize.__scroll_factor = 1;
                 if (location.href.indexOf('/ar_') !== -1) {
-                    if (Neowize.Utils.Browser.browser.name.indexOf("Firefox") !== -1 ||
-                        Neowize.Utils.Browser.browser.name.indexOf("Safari") !== -1) {
+                    if ((Neowize.Utils.Browser.browser.name.indexOf("Firefox") !== -1) ||
+                        (Neowize.Utils.Browser.browser.name.indexOf("Safari") !== -1)) {
                             var temp = leftArrow;
                             leftArrow = rightArrow;
                             rightArrow = temp;
