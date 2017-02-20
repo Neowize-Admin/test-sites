@@ -187,7 +187,7 @@ This example code is provided by NeoWize, 2017.
                 if (location.href.indexOf('/ar_') !== -1) {
                     if ((Neowize.Utils.Browser.browser.name.indexOf("Firefox") !== -1) ||
                         ((Neowize.Utils.Browser.browser.name.indexOf("Safari") !== -1 &&
-                        parseInt((Neowize.Utils.Browser.engine.version || "").split('.')[0]) > 601)) {
+                        parseInt((Neowize.Utils.Browser.engine.version || "").split('.')[0]) > 601))) {
                             var temp = leftArrow;
                             leftArrow = rightArrow;
                             rightArrow = temp;
