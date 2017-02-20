@@ -192,12 +192,15 @@ This example code is provided by NeoWize, 2017.
                             rightArrow = temp;
                             alert("FLIPPED!");
                     }
-                    if (Neowize.Utils.Browser.browser.name === "IE") {
+                    else if (Neowize.Utils.Browser.browser.name === "IE") {
                             Neowize.__scroll_factor = -1;
                             var temp = leftArrow;
                             leftArrow = rightArrow;
                             rightArrow = temp;
                             alert("IE?!?!?");
+                    }
+                    else {
+                        alert("didn't flip!")
                     }
                 }
 
